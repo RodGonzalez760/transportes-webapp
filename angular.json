@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "transportes-app"
+    }
+  },
+  "defaultProject": "transportes-app",
+  "cli": {
+    "analytics": "be020d01-a1c2-43ff-90c3-d569669bf37a"
+  }
 }
