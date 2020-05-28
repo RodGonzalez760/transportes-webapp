@@ -13,6 +13,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { LoginComponent } from './componentes/login/login.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
+import { FooterComponent } from './componentes/footer/footer.component';
+import { HeaderComponent } from './componentes/header/header.component';
 
 const config = {
   apiKey: 'AIzaSyBSCgdhGkZJrsrS2_4eTqPksggOttaFCvo',
@@ -26,7 +28,7 @@ const config = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MapaComponent],
+  declarations: [AppComponent, LoginComponent, MapaComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

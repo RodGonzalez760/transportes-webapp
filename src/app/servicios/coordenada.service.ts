@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Coordenada } from '../modelo/coordenada';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoordenadaService {
+  listaCoordenadas: Observable<Coordenada[]>;
+  coordenada: Observable<Coordenada>;
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase) {}
+
+  getCoordenadas() {
+    this.listaCoordenadas = this.db
+      .list<Coordenada>('coordenadas')
+      .valueChanges();
+  }
 }

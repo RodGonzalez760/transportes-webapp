@@ -1,1 +1,148 @@
-<p>login works!</p>
+<div *ngIf="auth.user | async as user; else showLogin">
+  <app-header></app-header>
+  <app-mapa></app-mapa>
+  <app-footer></app-footer>
+</div>
+<ng-template #showLogin>
+  <ul class="mt-2 nav justify-content-center">
+    <li class="nav-item p-2">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#modalingreso"
+      >
+        Acceso clientes
+      </button>
+    </li>
+    <li class="nav-item p-2">
+      <button
+        class="btn btn-secondary"
+        data-toggle="modal"
+        data-target="#modaltrabaja"
+      >
+        Trabaja con nosotros
+      </button>
+    </li>
+  </ul>
+
+  <!-- modalingreso -->
+  <div class="modal fade" id="modalingreso" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <form #formularioIngreso="ngForm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Accede a tu cuenta
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="correo">Correo electronico</label>
+              <input
+                type="email"
+                class="form-control"
+                id="correoElectronico"
+                [(ngModel)]="usuario.correoElectronico"
+                name="correoElectronico"
+                required
+                email
+                #correoElectronico="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  correoElectronico.invalid &&
+                  (correoElectronico.dirty || correoElectronico.touched)
+                "
+              >
+                <div *ngIf="correoElectronico.errors.required">
+                  El correo es requerido
+                </div>
+                <div *ngIf="correoElectronico.errors.email">
+                  El correo debe tener formato valido
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                [(ngModel)]="usuario.password"
+                name="password"
+                required
+                #password="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                *ngIf="password.invalid && (password.dirty || password.touched)"
+              >
+                <div *ngIf="password.errors.required">
+                  La contraseña es requerida
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              data-dismiss="modal"
+              (click)="login()"
+              type="button"
+              class="btn btn-primary"
+              [disabled]="!formularioIngreso.form.valid"
+            >
+              Ingresar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- modaltrabaja -->
+  <div class="modal fade" id="modaltrabaja" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Llene el formulario
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Formulario
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
