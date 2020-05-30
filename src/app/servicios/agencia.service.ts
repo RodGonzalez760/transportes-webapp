@@ -1,8 +1,48 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Agencia } from '../modelo/agencia';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AgenciaService {
-  constructor() {}
+  listaAgencias: Observable<Agencia[]>;
+  agencia: Observable<Agencia>;
+
+  constructor(private afs: AngularFirestore) {}
+
+  addAgencia(nombreAgencia: string) {
+    const agencia: Agencia = new Agencia();
+    agencia.nombreAgencia = nombreAgencia;
+    this.afs
+      .collection<Agencia>('agencias')
+      .add(JSON.parse(JSON.stringify(agencia)));
+  }
+
+  getAgencias() {
+    return (this.listaAgencias = this.afs
+      .collection<Agencia>('agencias')
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data();
+            const idAgencia = a.payload.doc.id;
+            return { idAgencia, ...data };
+          })
+        )
+      ));
+  }
+
+  updateAgencia(agencia: Agencia) {
+    this.afs
+      .doc('agencias/' + agencia.idAgencia)
+      .update(JSON.parse(JSON.stringify(agencia)));
+  }
+
+  deleteAgencia(idAgencia: string) {
+    this.afs.doc('agencias/' + idAgencia).delete();
+  }
 }
