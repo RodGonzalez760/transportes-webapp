@@ -9,13 +9,10 @@ import { map } from 'rxjs/operators';
 })
 export class AgenciaService {
   listaAgencias: Observable<Agencia[]>;
-  agencia: Observable<Agencia>;
 
   constructor(private afs: AngularFirestore) {}
 
-  addAgencia(nombreAgencia: string) {
-    const agencia: Agencia = new Agencia();
-    agencia.nombreAgencia = nombreAgencia;
+  addAgencia(agencia: Agencia) {
     this.afs
       .collection<Agencia>('agencias')
       .add(JSON.parse(JSON.stringify(agencia)));

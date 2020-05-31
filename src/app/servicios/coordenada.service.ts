@@ -12,8 +12,8 @@ export class CoordenadaService {
   constructor(private db: AngularFireDatabase) {}
 
   getCoordenadas() {
-    this.listaCoordenadas = this.db
+    return (this.listaCoordenadas = this.db
       .list<Coordenada>('coordenadas')
-      .valueChanges();
+      .valueChanges());
   }
 }
