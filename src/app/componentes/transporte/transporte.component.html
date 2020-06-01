@@ -1,0 +1,54 @@
+<div class="container m-3">
+  <div class="m-3">
+    <button
+      class="btn btn-primary"
+      type="button"
+      name="nuevoTransporte"
+      [routerLink]="['/transporte/form']"
+    >
+      Nuevo Transporte
+    </button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre Conductor</th>
+        <th>Patente</th>
+        <th>Linea Transporte</th>
+        <th>Estado</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transporte of listaTransportes">
+        <td>{{ transporte.nombreConductor }}</td>
+        <td>{{ transporte.patente }}</td>
+        <td>{{ transporte.lineaTransporte }}</td>
+        <td *ngIf="transporte.estado">Activo</td>
+
+        <td *ngIf="!transporte.estado">Inactivo</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            type="button"
+            name="editar"
+            [routerLink]="['/transporte/form', transporte.idTransporte]"
+          >
+            Editar
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="eliminarTransporte(transporte)"
+            class="btn btn-danger"
+            type="button"
+            name="eliminar"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

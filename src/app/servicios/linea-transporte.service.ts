@@ -9,8 +9,15 @@ import { map } from 'rxjs/operators';
 })
 export class LineaTransporteService {
   listaLineaTransportes: Observable<LineaTransporte[]>;
+  lineaTransporte: Observable<LineaTransporte>;
 
   constructor(private afs: AngularFirestore) {}
+
+  getLineaTransportePorId(idLineaTransporte: string) {
+    return (this.lineaTransporte = this.afs
+      .doc<LineaTransporte>('transportes/' + idLineaTransporte)
+      .valueChanges());
+  }
 
   addLineaTransporte(lineaTransporte: LineaTransporte) {
     this.afs
@@ -20,7 +27,7 @@ export class LineaTransporteService {
 
   getLineaTransportes() {
     return (this.listaLineaTransportes = this.afs
-      .collection<LineaTransporte>('lineatransportes')
+      .collection<LineaTransporte>('lineastransportes')
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -35,11 +42,11 @@ export class LineaTransporteService {
 
   updateLineaTransportes(lineaTransporte: LineaTransporte) {
     this.afs
-      .doc('lineatransportes/' + lineaTransporte.idLineaTransporte)
+      .doc('lineastransportes/' + lineaTransporte.idLineaTransporte)
       .update(JSON.parse(JSON.stringify(lineaTransporte)));
   }
 
   deleteLineaTransporte(idLineaTransporte: string) {
-    this.afs.doc('lineatransportes/' + idLineaTransporte).delete();
+    this.afs.doc('lineastransportes/' + idLineaTransporte).delete();
   }
 }

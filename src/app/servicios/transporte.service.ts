@@ -9,13 +9,23 @@ import { map } from 'rxjs/operators';
 })
 export class TransporteService {
   listaTransportes: Observable<Transporte[]>;
+  transporte: Observable<Transporte>;
 
   constructor(private afs: AngularFirestore) {}
+
+  getTransportePorId(idTransporte: string) {
+    return (this.transporte = this.afs
+      .doc<Transporte>('transportes/' + idTransporte)
+      .valueChanges());
+  }
 
   addTransporte(transporte: Transporte) {
     this.afs
       .collection<Transporte>('transportes')
-      .add(JSON.parse(JSON.stringify(transporte)));
+      .add(JSON.parse(JSON.stringify(transporte)))
+      .then((resultado) => {
+        return resultado;
+      });
   }
 
   getTransportes() {

@@ -15,6 +15,14 @@ import { LoginComponent } from './componentes/login/login.component';
 import { MapaComponent } from './componentes/mapa/mapa.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HeaderComponent } from './componentes/header/header.component';
+import { TransporteComponent } from './componentes/transporte/transporte.component';
+import { TransporteFormComponent } from './componentes/transporte/transporte-form.component';
+import { LineaTransporteComponent } from './componentes/linea-transporte/linea-transporte.component';
+import { AgenciaComponent } from './componentes/agencia/agencia.component';
+import { ReclamoComponent } from './componentes/reclamo/reclamo.component';
+import { ReportesComponent } from './componentes/reportes/reportes.component';
+import { AgenciaFormComponent } from './componentes/agencia/agencia-form.component';
+import { LineaTransporteFormComponent } from './componentes/linea-transporte/linea-transporte-form.component';
 
 const config = {
   apiKey: 'AIzaSyBSCgdhGkZJrsrS2_4eTqPksggOttaFCvo',
@@ -28,7 +36,21 @@ const config = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MapaComponent, FooterComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    MapaComponent,
+    FooterComponent,
+    HeaderComponent,
+    TransporteComponent,
+    TransporteFormComponent,
+    LineaTransporteComponent,
+    AgenciaComponent,
+    ReclamoComponent,
+    ReportesComponent,
+    AgenciaFormComponent,
+    LineaTransporteFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

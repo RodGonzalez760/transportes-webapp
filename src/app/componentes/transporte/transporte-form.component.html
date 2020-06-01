@@ -1,0 +1,81 @@
+<div class="conteiner m-3">
+  <form class="col-sm-2">
+    <div class="form-group">
+      <label for="nombreConductor">Nombre del conductor</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombreConductor"
+        [(ngModel)]="transporte.nombreConductor"
+        name="nombreConductor"
+        required
+        #nombreConductor="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          nombreConductor.invalid &&
+          (nombreConductor.dirty || nombreConductor.touched)
+        "
+      >
+        <div *ngIf="nombreConductor.errors.required">
+          El nombre es requerido
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="patente">Patente</label>
+      <input
+        type="text"
+        class="form-control"
+        id="patente"
+        [(ngModel)]="transporte.patente"
+        name="patente"
+        required
+        #patente="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="patente.invalid && (patente.dirty || patente.touched)"
+      >
+        <div *ngIf="patente.errors.required">
+          La patente es requerida
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lineaTransporte">Linea Transporte</label>
+      <select
+        [compareWith]="compararLineaTransporte"
+        class="form-control"
+        name="lineaTransporte"
+        [(ngModel)]="transporte.lineaTransporte"
+      >
+        <option
+          *ngFor="let lineaTransporte of listaLineaTransportes"
+          [ngValue]="lineaTransporte.idLineaTransporte"
+          >{{ lineaTransporte.nombreLinea }}</option
+        >
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <select
+        class="form-control"
+        name="estado"
+        [(ngModel)]="transporte.estado"
+      >
+        <option [ngValue]="true">Activo</option>
+        <option [ngValue]="false">Inactivo</option>
+      </select>
+    </div>
+    <button
+      (click)="agregarTransporte()"
+      class="btn btn-primary"
+      type="button"
+      name="crearTransporte"
+    >
+      Agregar transporte
+    </button>
+  </form>
+</div>

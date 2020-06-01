@@ -1,10 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Inicio </a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/mapa']">Inicio</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/agencia']">Agencia</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/lineatransporte']"
+          >Linea Transporte</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/transporte']">Transporte</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/reclamo']">Reclamo</a>
+      </li>
+
+      <li class="nav-item dropdown" routerLinkActive="active">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -14,30 +29,14 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Linea de transporte
+          Reportes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#"
-            >Ver listado de lineas de transporte</a
+          <a class="dropdown-item" [routerLink]="['/reportes']">General</a>
+          <a class="dropdown-item" [routerLink]="['/reportes']"
+            >Por inactividad</a
           >
-          <a class="dropdown-item" href="#">Agregar linea de transporte</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Transportes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Ver listado transportes</a>
-          <a class="dropdown-item" href="#">Agregar transporte</a>
+          <a class="dropdown-item" [routerLink]="['/reportes']">Por reclamos</a>
         </div>
       </li>
     </ul>
