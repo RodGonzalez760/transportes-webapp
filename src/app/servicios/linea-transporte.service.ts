@@ -15,7 +15,7 @@ export class LineaTransporteService {
 
   getLineaTransportePorId(idLineaTransporte: string) {
     return (this.lineaTransporte = this.afs
-      .doc<LineaTransporte>('transportes/' + idLineaTransporte)
+      .doc<LineaTransporte>('lineatransportes/' + idLineaTransporte)
       .valueChanges());
   }
 
@@ -27,7 +27,7 @@ export class LineaTransporteService {
 
   getLineaTransportes() {
     return (this.listaLineaTransportes = this.afs
-      .collection<LineaTransporte>('lineastransportes')
+      .collection<LineaTransporte>('lineatransportes')
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -42,11 +42,18 @@ export class LineaTransporteService {
 
   updateLineaTransportes(lineaTransporte: LineaTransporte) {
     this.afs
-      .doc('lineastransportes/' + lineaTransporte.idLineaTransporte)
-      .update(JSON.parse(JSON.stringify(lineaTransporte)));
+      .doc('lineatransportes/' + lineaTransporte.idLineaTransporte)
+      .update(
+        JSON.parse(
+          JSON.stringify({
+            idAgencia: lineaTransporte.idAgencia,
+            nombreLinea: lineaTransporte.nombreLinea,
+          })
+        )
+      );
   }
 
   deleteLineaTransporte(idLineaTransporte: string) {
-    this.afs.doc('lineastransportes/' + idLineaTransporte).delete();
+    this.afs.doc('lineatransportes/' + idLineaTransporte).delete();
   }
 }

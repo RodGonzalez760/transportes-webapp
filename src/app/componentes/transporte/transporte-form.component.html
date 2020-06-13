@@ -1,5 +1,5 @@
 <div class="conteiner m-3">
-  <form class="col-sm-2">
+  <form #transporteForm="ngForm" class="col-sm-2">
     <div class="form-group">
       <label for="nombreConductor">Nombre del conductor</label>
       <input
@@ -46,6 +46,7 @@
     <div class="form-group">
       <label for="lineaTransporte">Linea Transporte</label>
       <select
+        required
         [compareWith]="compararLineaTransporte"
         class="form-control"
         name="lineaTransporte"
@@ -61,6 +62,7 @@
     <div class="form-group">
       <label for="estado">Estado</label>
       <select
+        required
         class="form-control"
         name="estado"
         [(ngModel)]="transporte.estado"
@@ -70,12 +72,25 @@
       </select>
     </div>
     <button
+      [disabled]="!transporteForm.form.valid"
       (click)="agregarTransporte()"
       class="btn btn-primary"
       type="button"
       name="crearTransporte"
+      *ngIf="!transporte.idTransporte; else elseBlock"
     >
       Agregar transporte
     </button>
+    <ng-template #elseBlock>
+      <button
+        [disabled]="!transporteForm.form.valid"
+        (click)="actualizarTransporte()"
+        class="btn btn-primary"
+        type="button"
+        name="actualizarTransporte"
+      >
+        Actualizar transporte
+      </button>
+    </ng-template>
   </form>
 </div>

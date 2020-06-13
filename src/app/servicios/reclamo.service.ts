@@ -9,8 +9,15 @@ import { map } from 'rxjs/operators';
 })
 export class ReclamoService {
   listaReclamos: Observable<Reclamo[]>;
+  reclamo: Observable<Reclamo>;
 
   constructor(private afs: AngularFirestore) {}
+
+  getReclamoPorId(idReclamo: string) {
+    return (this.reclamo = this.afs
+      .doc<Reclamo>('reclamos/' + idReclamo)
+      .valueChanges());
+  }
 
   addReclamo(reclamo: Reclamo) {
     this.afs
@@ -34,9 +41,17 @@ export class ReclamoService {
   }
 
   updateReclamo(reclamo: Reclamo) {
-    this.afs
-      .doc('reclamos/' + reclamo.idReclamo)
-      .update(JSON.parse(JSON.stringify(reclamo)));
+    this.afs.doc('reclamos/' + reclamo.idReclamo).update(
+      JSON.parse(
+        JSON.stringify({
+          idUsuario: reclamo.idUsuario,
+          idTransporte: reclamo.idTransporte,
+          fechaHora: reclamo.fechaHora,
+          titulo: reclamo.titulo,
+          comentario: reclamo.comentario,
+        })
+      )
+    );
   }
 
   deleteReclamo(idReclamo: string) {

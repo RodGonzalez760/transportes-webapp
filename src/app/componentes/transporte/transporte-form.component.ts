@@ -4,6 +4,7 @@ import { LineaTransporte } from 'src/app/modelo/linea-transporte';
 import { LineaTransporteService } from 'src/app/servicios/linea-transporte.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TransporteService } from 'src/app/servicios/transporte.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-transporte-form',
@@ -30,8 +31,23 @@ export class TransporteFormComponent implements OnInit {
       });
   }
 
+  actualizarTransporte() {
+    this.servicioTransporte.updateTransporte(this.transporte);
+    Swal.fire({
+      icon: 'success',
+      title: 'Actualizado',
+      text: 'Trnasporte actualizado',
+    });
+    this.router.navigate(['/transporte']);
+  }
+
   agregarTransporte() {
     this.servicioTransporte.addTransporte(this.transporte);
+    Swal.fire({
+      icon: 'success',
+      title: 'Agregado',
+      text: 'Trnasporte agregado',
+    });
     this.router.navigate(['/transporte']);
   }
 
@@ -43,7 +59,9 @@ export class TransporteFormComponent implements OnInit {
           .getTransportePorId(idTransporte)
           .subscribe((resultado) => {
             this.transporte = resultado;
-            this.transporte.idTransporte = idTransporte;
+            if (this.transporte) {
+              this.transporte.idTransporte = idTransporte;
+            }
           });
       }
     });

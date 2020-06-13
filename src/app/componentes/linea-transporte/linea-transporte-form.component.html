@@ -1,1 +1,63 @@
-<p>linea-transporte-form works!</p>
+<div class="conteiner m-3">
+  <form #lineatransporteForm="ngForm" class="col-sm-2">
+    <div class="form-group">
+      <label for="nombreLinea">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombreLinea"
+        [(ngModel)]="lineaTransporte.nombreLinea"
+        name="nombreLinea"
+        required
+        #nombreLinea="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          nombreLinea.invalid && (nombreLinea.dirty || nombreLinea.touched)
+        "
+      >
+        <div *ngIf="nombreLinea.errors.required">
+          El nombre es requerido
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="agencia">Agencia</label>
+      <select
+        required
+        [compareWith]="compararAgencia"
+        class="form-control"
+        name="agencia"
+        [(ngModel)]="lineaTransporte.idAgencia"
+      >
+        <option
+          *ngFor="let agencia of listaAgencias"
+          [ngValue]="agencia.idAgencia"
+          >{{ agencia.nombreAgencia }}</option
+        >
+      </select>
+    </div>
+    <button
+      [disabled]="!lineatransporteForm.form.valid"
+      (click)="agregarLineaTransporte()"
+      class="btn btn-primary"
+      type="button"
+      name="crearLineaTransporte"
+      *ngIf="!lineaTransporte.idLineaTransporte; else elseBlock"
+    >
+      Agregar linea transporte
+    </button>
+    <ng-template #elseBlock>
+      <button
+        [disabled]="!lineatransporteForm.form.valid"
+        (click)="actualizarLineaTransporte()"
+        class="btn btn-primary"
+        type="button"
+        name="actualizarLineaTransporte"
+      >
+        Actualizar linea transporte
+      </button>
+    </ng-template>
+  </form>
+</div>

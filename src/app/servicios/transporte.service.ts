@@ -22,10 +22,7 @@ export class TransporteService {
   addTransporte(transporte: Transporte) {
     this.afs
       .collection<Transporte>('transportes')
-      .add(JSON.parse(JSON.stringify(transporte)))
-      .then((resultado) => {
-        return resultado;
-      });
+      .add(JSON.parse(JSON.stringify(transporte)));
   }
 
   getTransportes() {
@@ -44,9 +41,16 @@ export class TransporteService {
   }
 
   updateTransporte(transporte: Transporte) {
-    this.afs
-      .doc('transportes/' + transporte.idTransporte)
-      .update(JSON.parse(JSON.stringify(transporte)));
+    this.afs.doc('transportes/' + transporte.idTransporte).update(
+      JSON.parse(
+        JSON.stringify({
+          estado: transporte.estado,
+          lineaTransporte: transporte.lineaTransporte,
+          nombreConductor: transporte.nombreConductor,
+          patente: transporte.patente,
+        })
+      )
+    );
   }
 
   deleteTransporte(idTransporte: string) {

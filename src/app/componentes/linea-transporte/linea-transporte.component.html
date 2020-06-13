@@ -1,1 +1,51 @@
-<p>linea-transporte works!</p>
+<div class="container m-3">
+  <div class="m-3">
+    <button
+      class="btn btn-primary"
+      type="button"
+      name="nuevoLineaTransporte"
+      [routerLink]="['/lineatransporte/form']"
+    >
+      Nueva Linea transporte
+    </button>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre Linea</th>
+        <th>Agencia</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lineaTransporte of listaLineaTransportes">
+        <td>{{ lineaTransporte.nombreLinea }}</td>
+        <td>{{ lineaTransporte.idAgencia }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            type="button"
+            name="editar"
+            [routerLink]="[
+              '/lineatransporte/form',
+              lineaTransporte.idLineaTransporte
+            ]"
+          >
+            Editar
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="eliminarLineaTransporte(lineaTransporte)"
+            class="btn btn-danger"
+            type="button"
+            name="eliminar"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
