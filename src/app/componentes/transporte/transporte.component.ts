@@ -20,10 +20,12 @@ export class TransporteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.servicioLineaTransorte.getLineaTransportes().subscribe((resultado) => {
-      this.listaLineaTransportes = resultado;
-    });
-    this.servicioTransporte.getTransportes().subscribe((resultado) => {
+    this.servicioLineaTransorte
+      .readAllLineaTransporte()
+      .subscribe((resultado) => {
+        this.listaLineaTransportes = resultado;
+      });
+    this.servicioTransporte.readAllTransporte().subscribe((resultado) => {
       this.listaTransportes = resultado;
     });
   }

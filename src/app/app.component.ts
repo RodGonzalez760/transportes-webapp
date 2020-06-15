@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    this.auth.createUserWithEmailAndPassword;
     this.auth.user.subscribe((resultado) => {
       this.usuario = resultado;
     });

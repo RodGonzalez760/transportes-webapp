@@ -24,13 +24,13 @@ export class LineaTransporteFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarLineaTransporte();
-    this.servicioAgencia.getAgencias().subscribe((resultado) => {
+    this.servicioAgencia.readAllAgencia().subscribe((resultado) => {
       this.listaAgencias = resultado;
     });
   }
 
   actualizarLineaTransporte() {
-    this.servicioLineaTransporte.updateLineaTransportes(this.lineaTransporte);
+    this.servicioLineaTransporte.updateLineaTransporte(this.lineaTransporte);
     Swal.fire({
       icon: 'success',
       title: 'Actualizado',
@@ -40,7 +40,7 @@ export class LineaTransporteFormComponent implements OnInit {
   }
 
   agregarLineaTransporte() {
-    this.servicioLineaTransporte.addLineaTransporte(this.lineaTransporte);
+    this.servicioLineaTransporte.createLineaTransporte(this.lineaTransporte);
     Swal.fire({
       icon: 'success',
       title: 'Agregado',
@@ -50,11 +50,11 @@ export class LineaTransporteFormComponent implements OnInit {
   }
 
   cargarLineaTransporte() {
-    this.activatedRoute.params.subscribe((resultado) => {
-      let idLineaTransporte = resultado['idLineaTransporte'];
+    this.activatedRoute.params.subscribe((dato) => {
+      let idLineaTransporte = dato['idLineaTransporte'];
       if (idLineaTransporte) {
         this.servicioLineaTransporte
-          .getLineaTransportePorId(idLineaTransporte)
+          .readLineaTransportePorId(idLineaTransporte)
           .subscribe((resultado) => {
             this.lineaTransporte = resultado;
             if (this.lineaTransporte) {

@@ -25,14 +25,14 @@ import { AgenciaFormComponent } from './componentes/agencia/agencia-form.compone
 import { LineaTransporteFormComponent } from './componentes/linea-transporte/linea-transporte-form.component';
 
 const config = {
-  apiKey: 'AIzaSyBSCgdhGkZJrsrS2_4eTqPksggOttaFCvo',
-  authDomain: 'transportes-app-d6fcb.firebaseapp.com',
-  databaseURL: 'https://transportes-app-d6fcb.firebaseio.com',
-  projectId: 'transportes-app-d6fcb',
-  storageBucket: 'transportes-app-d6fcb.appspot.com',
-  messagingSenderId: '1308881467',
-  appId: '1:1308881467:web:30208d15d237ee2446621e',
-  measurementId: 'G-X4H3RMC3MS',
+  apiKey: 'AIzaSyDHBIGUSWtcp3xWpQ2ECoC_Q7Qj8NzoWj8',
+  authDomain: 'trasportracking.firebaseapp.com',
+  databaseURL: 'https://trasportracking.firebaseio.com',
+  projectId: 'trasportracking',
+  storageBucket: 'trasportracking.appspot.com',
+  messagingSenderId: '353201080906',
+  appId: '1:353201080906:web:44ce9ceaf7f57994aaf4b3',
+  measurementId: 'G-QF5CKHGQM8',
 };
 
 @NgModule({

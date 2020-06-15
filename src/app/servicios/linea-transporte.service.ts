@@ -8,26 +8,26 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class LineaTransporteService {
-  listaLineaTransportes: Observable<LineaTransporte[]>;
-  lineaTransporte: Observable<LineaTransporte>;
+  lista: Observable<LineaTransporte[]>;
+  linea: Observable<LineaTransporte>;
 
   constructor(private afs: AngularFirestore) {}
 
-  getLineaTransportePorId(idLineaTransporte: string) {
-    return (this.lineaTransporte = this.afs
-      .doc<LineaTransporte>('lineatransportes/' + idLineaTransporte)
+  readLineaTransportePorId(idLineaTransporte: string) {
+    return (this.linea = this.afs
+      .doc<LineaTransporte>('LineaTransporte/' + idLineaTransporte)
       .valueChanges());
   }
 
-  addLineaTransporte(lineaTransporte: LineaTransporte) {
+  createLineaTransporte(linea: LineaTransporte) {
     this.afs
-      .collection<LineaTransporte>('lineatransportes')
-      .add(JSON.parse(JSON.stringify(lineaTransporte)));
+      .collection<LineaTransporte>('LineaTransporte')
+      .add(JSON.parse(JSON.stringify(linea)));
   }
 
-  getLineaTransportes() {
-    return (this.listaLineaTransportes = this.afs
-      .collection<LineaTransporte>('lineatransportes')
+  readAllLineaTransporte() {
+    return (this.lista = this.afs
+      .collection<LineaTransporte>('LineaTransporte')
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -40,20 +40,18 @@ export class LineaTransporteService {
       ));
   }
 
-  updateLineaTransportes(lineaTransporte: LineaTransporte) {
-    this.afs
-      .doc('lineatransportes/' + lineaTransporte.idLineaTransporte)
-      .update(
-        JSON.parse(
-          JSON.stringify({
-            idAgencia: lineaTransporte.idAgencia,
-            nombreLinea: lineaTransporte.nombreLinea,
-          })
-        )
-      );
+  updateLineaTransporte(linea: LineaTransporte) {
+    this.afs.doc('LineaTransporte/' + linea.idLineaTransporte).update(
+      JSON.parse(
+        JSON.stringify({
+          idAgencia: linea.idAgencia,
+          nombreLinea: linea.nombreLinea,
+        })
+      )
+    );
   }
 
   deleteLineaTransporte(idLineaTransporte: string) {
-    this.afs.doc('lineatransportes/' + idLineaTransporte).delete();
+    this.afs.doc('LineaTransporte/' + idLineaTransporte).delete();
   }
 }

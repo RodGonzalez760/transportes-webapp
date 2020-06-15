@@ -20,11 +20,13 @@ export class LineaTransporteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.servicioLineaTransorte.getLineaTransportes().subscribe((resultado) => {
-      this.listaLineaTransportes = resultado;
-      console.log(this.listaLineaTransportes);
-    });
-    this.servicioAgencia.getAgencias().subscribe((resultado) => {
+    this.servicioLineaTransorte
+      .readAllLineaTransporte()
+      .subscribe((resultado) => {
+        this.listaLineaTransportes = resultado;
+        console.log(this.listaLineaTransportes);
+      });
+    this.servicioAgencia.readAllAgencia().subscribe((resultado) => {
       this.listaAgencias = resultado;
     });
   }

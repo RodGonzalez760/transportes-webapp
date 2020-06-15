@@ -8,19 +8,19 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AgenciaService {
-  listaAgencias: Observable<Agencia[]>;
+  lista: Observable<Agencia[]>;
 
   constructor(private afs: AngularFirestore) {}
 
-  addAgencia(agencia: Agencia) {
+  createAgencia(agencia: Agencia) {
     this.afs
-      .collection<Agencia>('agencias')
+      .collection<Agencia>('Agencia')
       .add(JSON.parse(JSON.stringify(agencia)));
   }
 
-  getAgencias() {
-    return (this.listaAgencias = this.afs
-      .collection<Agencia>('agencias')
+  readAllAgencia() {
+    return (this.lista = this.afs
+      .collection<Agencia>('Agencia')
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -35,11 +35,11 @@ export class AgenciaService {
 
   updateAgencia(agencia: Agencia) {
     this.afs
-      .doc('agencias/' + agencia.idAgencia)
+      .doc('Agencia/' + agencia.idAgencia)
       .update(JSON.parse(JSON.stringify(agencia)));
   }
 
   deleteAgencia(idAgencia: string) {
-    this.afs.doc('agencias/' + idAgencia).delete();
+    this.afs.doc('Agencia/' + idAgencia).delete();
   }
 }

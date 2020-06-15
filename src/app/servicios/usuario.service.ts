@@ -8,19 +8,19 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UsuarioService {
-  listaUsuarios: Observable<Usuario[]>;
+  lista: Observable<Usuario[]>;
 
   constructor(private afs: AngularFirestore) {}
 
-  addUsuario(usuario: Usuario) {
+  createUsuario(usuario: Usuario) {
     this.afs
-      .collection<Usuario>('usuarios')
+      .collection<Usuario>('Usuario')
       .add(JSON.parse(JSON.stringify(usuario)));
   }
 
-  getUsuarios() {
-    return (this.listaUsuarios = this.afs
-      .collection<Usuario>('usuarios')
+  readAllUsuario() {
+    return (this.lista = this.afs
+      .collection<Usuario>('Usuario')
       .snapshotChanges()
       .pipe(
         map((actions) =>
@@ -35,11 +35,11 @@ export class UsuarioService {
 
   updateUsuario(usuario: Usuario) {
     this.afs
-      .doc('usuarios/' + usuario.idUsuario)
+      .doc('Usuario/' + usuario.idUsuario)
       .update(JSON.parse(JSON.stringify(usuario)));
   }
 
   deleteUsuario(idUsuario: string) {
-    this.afs.doc('usuarios/' + idUsuario).delete();
+    this.afs.doc('Usuario/' + idUsuario).delete();
   }
 }
