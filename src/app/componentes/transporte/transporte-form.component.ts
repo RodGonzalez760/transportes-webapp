@@ -46,7 +46,7 @@ export class TransporteFormComponent implements OnInit {
     Swal.fire({
       icon: 'success',
       title: 'Agregado',
-      text: 'Trnasporte agregado',
+      text: 'Transporte agregado',
     });
     this.router.navigate(['/transporte']);
   }
