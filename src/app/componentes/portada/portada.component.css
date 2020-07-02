@@ -1,0 +1,10 @@
+.font-carusel{
+    font-style: italic;
+    color: black ;
+}
+
+.responsive{
+    width: 100%;
+    height: auto;
+    max-height: 550px;
+}

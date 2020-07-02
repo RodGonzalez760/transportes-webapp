@@ -23,6 +23,7 @@ import { ReclamoComponent } from './componentes/reclamo/reclamo.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { AgenciaFormComponent } from './componentes/agencia/agencia-form.component';
 import { LineaTransporteFormComponent } from './componentes/linea-transporte/linea-transporte-form.component';
+import { PortadaComponent } from './componentes/portada/portada.component';
 
 const config = {
   apiKey: 'AIzaSyDHBIGUSWtcp3xWpQ2ECoC_Q7Qj8NzoWj8',
@@ -50,6 +51,7 @@ const config = {
     ReportesComponent,
     AgenciaFormComponent,
     LineaTransporteFormComponent,
+    PortadaComponent,
   ],
   imports: [
     BrowserModule,
