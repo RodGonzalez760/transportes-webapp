@@ -24,6 +24,8 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { AgenciaFormComponent } from './componentes/agencia/agencia-form.component';
 import { LineaTransporteFormComponent } from './componentes/linea-transporte/linea-transporte-form.component';
 import { PortadaComponent } from './componentes/portada/portada.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const config = {
   apiKey: 'AIzaSyDHBIGUSWtcp3xWpQ2ECoC_Q7Qj8NzoWj8',
@@ -52,6 +54,7 @@ const config = {
     AgenciaFormComponent,
     LineaTransporteFormComponent,
     PortadaComponent,
+    ModalLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +65,7 @@ const config = {
     AngularFireAuthModule,
     AngularFireStorageModule,
     GoogleMapsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

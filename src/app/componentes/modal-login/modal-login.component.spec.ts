@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PortadaComponent } from './portada.component';
+import { ModalLoginComponent } from './modal-login.component';
 
-describe('PortadaComponent', () => {
-  let component: PortadaComponent;
-  let fixture: ComponentFixture<PortadaComponent>;
+describe('ModalLoginComponent', () => {
+  let component: ModalLoginComponent;
+  let fixture: ComponentFixture<ModalLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortadaComponent ]
+      declarations: [ ModalLoginComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PortadaComponent);
+    fixture = TestBed.createComponent(ModalLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,6 +22,4 @@ describe('PortadaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  
 });

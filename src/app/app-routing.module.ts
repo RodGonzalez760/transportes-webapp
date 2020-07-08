@@ -10,9 +10,11 @@ import { LineaTransporteComponent } from './componentes/linea-transporte/linea-t
 import { LineaTransporteFormComponent } from './componentes/linea-transporte/linea-transporte-form.component';
 import { ReclamoComponent } from './componentes/reclamo/reclamo.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'modal-login', component: ModalLoginComponent},
   { path: 'mapa', component: MapaComponent },
   { path: 'reclamo', component: ReclamoComponent },
   { path: 'reportes', component: ReportesComponent },
