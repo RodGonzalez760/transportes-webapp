@@ -7,7 +7,6 @@ const loginServiceSpy = jasmine.createSpyObj('LoginService', ['login']);
 describe('Test para LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ]
